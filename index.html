@@ -88,20 +88,18 @@
         <p class="section__text__p2">A Passionate Web Developer</p>
         <div class="btn-container">
          <div class="btn-container">
-    <button class="btn btn-color-2" onclick="viewDoc('./english cv.docx')">
-    View English CV
-</button>
+    <div class="button-container">
+    <button class="btn btn-color-2" onclick="openFile('english cv.docx')">View English CV</button>
+    <button class="btn btn-color-2" onclick="openFile('Autobiography.docx')">View Autobiography</button>
+    <button class="btn btn-color-2" onclick="openFile('WASIFU_WA_KAZI.docx')">Kiswahili Version</button>
+</div>
 
-<button class="btn btn-color-2" onclick="viewDoc('./Autobiography.docx')">
-    View Autobiography
-</button>
-
-<button class="btn btn-color-2" onclick="viewDoc('./WASIFU WA KAZI.docx')">
-    View Kiswahili Version
-</button>
-
-<div id="viewer-container" style="display:none; margin-top: 20px;">
-    <iframe id="doc-viewer" src="" width="100%" height="600px" frameborder="0"></iframe>
+<div id="presentation-viewer-container" style="display:none; margin-top: 20px; text-align: center;">
+    <button onclick="closeViewer()" style="margin-bottom: 10px; padding: 5px 15px; background: #ff4444; color: white; border: none; border-radius: 4px; cursor: pointer;">
+        Close Preview
+    </button>
+    
+    <iframe id="doc-viewer" src="" width="100%" height="600px" frameborder="0" style="border: 2px solid #333; border-radius: 8px;"></iframe>
 </div>
 </div>
       </div>
@@ -306,7 +304,7 @@
     const container = document.getElementById('presentation-viewer-container');
     const iframe = document.getElementById('doc-viewer');
 
-    
+    // 1. Check if the site is running on a live web server (Vercel)
     const isLive = window.location.hostname !== "localhost" && 
                    window.location.hostname !== "127.0.0.1" && 
                    window.location.protocol !== "file:";
@@ -332,20 +330,6 @@
       window.open(fileName, '_blank');
     }
   }
-  function viewDoc(fileName) {
-    const viewerContainer = document.getElementById('viewer-container');
-    const iframe = document.getElementById('doc-viewer');
-    
-    // Get the full URL of your website
-    const baseUrl = window.location.href.replace(window.location.pathname, "");
-    const fileUrl = baseUrl + "/" + fileName;
-
-    // Set the Google Viewer source
-    iframe.src = "https://docs.google.com/gview?url=" + encodeURIComponent(fileUrl) + "&embedded=true";
-    
-    // Show the container
-    viewerContainer.style.display = "block";
-}
 
   /**
    * Hides the viewer and clears the iframe source
