@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Portfolio",
+            "url": "http://localhost:8080/portfolio/index.html",
+            "webRoot": "${workspaceFolder}/portfolio"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Live Server Root",
+            "url": "http://127.0.0.1",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
+}
