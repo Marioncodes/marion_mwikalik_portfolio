@@ -306,51 +306,51 @@
   </div>
 </section>
 <script>
-  /**
-   * Opens a PowerPoint file in an embedded viewer on the same page
-   * @param {string} fileName - The name of the file (e.g., 'innovation.pptx')
-   */
-  function openFile(fileName) {
-    const container = document.getElementById('presentation-viewer-container');
-    const iframe = document.getElementById('doc-viewer');
+  /**
+   * Opens a PowerPoint file in an embedded viewer on the same page
+   * @param {string} fileName - The name of the file (e.g., 'innovation.pptx')
+   */
+  function openFile(fileName) {
+    const container = document.getElementById('presentation-viewer-container');
+    const iframe = document.getElementById('doc-viewer');
 
-    // 1. Check if the site is running on a live web server (Vercel)
-    const isLive = window.location.hostname !== "localhost" && 
-                   window.location.hostname !== "127.0.0.1" && 
-                   window.location.protocol !== "file:";
+    // 1. Check if the site is running on a live web server (Vercel)
+    const isLive = window.location.hostname !== "localhost" && 
+                   window.location.hostname !== "127.0.0.1" && 
+                   window.location.protocol !== "file:";
 
-    if (isLive) {
-      // 2. If LIVE: Use Microsoft's Online Viewer embedded in our iframe
-      // We build the absolute URL because Microsoft needs to "reach out" to your Vercel site to get the file
-      const publicUrl = window.location.href.replace(/[^/]*$/, '') + fileName;
-      const viewerUrl = 'https://view.officeapps.live.com/op/view.aspx?src=' + encodeURIComponent(publicUrl) + '&embedded=true';
-      
-      // Update iframe and show container
-      iframe.src = viewerUrl;
-      container.style.display = 'block';
-      
-      // Smooth scroll to the viewer so the user knows where it appeared
-      container.scrollIntoView({ behavior: 'smooth' });
-      
-    } else {
-      // 3. If LOCAL: Open the file in a new tab
-      // Cloud viewers cannot "see" files on your C: drive or localhost
-      console.log("Local environment detected. Opening file directly.");
-      alert("Note: In-page viewing is only active on the live Vercel site. Opening file in a new tab for local preview.");
-      window.open(fileName, '_blank');
-    }
-  }
+    if (isLive) {
+      // 2. If LIVE: Use Microsoft's Online Viewer embedded in our iframe
+      // We build the absolute URL because Microsoft needs to "reach out" to your Vercel site to get the file
+      const publicUrl = window.location.href.replace(/[^/]*$/, '') + fileName;
+      const viewerUrl = 'https://view.officeapps.live.com/op/view.aspx?src=' + encodeURIComponent(publicUrl) + '&embedded=true';
+      
+      // Update iframe and show container
+      iframe.src = viewerUrl;
+      container.style.display = 'block';
+      
+      // Smooth scroll to the viewer so the user knows where it appeared
+      container.scrollIntoView({ behavior: 'smooth' });
+      
+    } else {
+      // 3. If LOCAL: Open the file in a new tab
+      // Cloud viewers cannot "see" files on your C: drive or localhost
+      console.log("Local environment detected. Opening file directly.");
+      alert("Note: In-page viewing is only active on the live Vercel site. Opening file in a new tab for local preview.");
+      window.open(fileName, '_blank');
+    }
+  }
 
-  /**
-   * Hides the viewer and clears the iframe source
-   */
-  function closeViewer() {
-    const container = document.getElementById('presentation-viewer-container');
-    const iframe = document.getElementById('doc-viewer');
-    
-    container.style.display = 'none';
-    iframe.src = ""; // Stop the document from loading/playing in the background
-  }
+  /**
+   * Hides the viewer and clears the iframe source
+   */
+  function closeViewer() {
+    const container = document.getElementById('presentation-viewer-container');
+    const iframe = document.getElementById('doc-viewer');
+    
+    container.style.display = 'none';
+    iframe.src = ""; // Stop the document from loading/playing in the background
+  }
 </script>
     <section id="contact">
       <p class="section__text__p1">Get in Touch</p>
